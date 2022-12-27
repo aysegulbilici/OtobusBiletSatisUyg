@@ -13,41 +13,39 @@ namespace OtobusBiletSatisUyg
 {
     public partial class Form1 : Form
     {
-        String musteri;
-        String tc;
-        char cinsiyet;
-        String nereden;
-        String nereye;
-        int koltukNo;
-        DateTime tarih;
-        int fiyat;
+       
 
         public Form1()
         {
             InitializeComponent();
+           
         }
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch(comboBox1.Text)
+            switch (comboBox1.Text)
             {
-                case "Nilüfer":KoltukDoldur(8, false);
-                        break;
-                case "KamilKoç":KoltukDoldur(12, true);
-                        break;
-                case "Kontur":KoltukDoldur(10, false);
-                        break;
+                case "Nilüfer":
+                    KoltukDoldur(8, false);
+                    break;
+                case "KamilKoç":
+                    KoltukDoldur(12, true);
+                    break;
+                case "Kontur":
+                    KoltukDoldur(10, false);
+                    break;
 
             }
             void KoltukDoldur(int sira, bool arkaBesliMi)
             {
-                yavaslat:
-                foreach(Control ctrl in this.Controls)
+            yavaslat:
+                foreach (Control ctrl in this.Controls)
                 {
-                    if(ctrl is Button)
+                    if (ctrl is Button)
                     {
                         Button btn = ctrl as Button;
-                        if(btn.Text=="Kaydet")
+                        if (btn.Text == "Kaydet")
                         {
                             continue;
                         }
@@ -59,13 +57,13 @@ namespace OtobusBiletSatisUyg
                     }
                 }
                 int koltukNo = 1;
-                for(int i=0;i<sira;i++)
+                for (int i = 0; i < sira; i++)
                 {
-                    for(int j=0;j<5;j++)
+                    for (int j = 0; j < 5; j++)
                     {
-                        if(arkaBesliMi==true)
+                        if (arkaBesliMi == true)
                         {
-                            if(i!=sira-1 && j==2)
+                            if (i != sira - 1 && j == 2)
                             {
                                 continue;
                             }
@@ -75,7 +73,7 @@ namespace OtobusBiletSatisUyg
                                     continue;
                             }
                         }
-                      
+
                         Button koltuk = new Button();
                         koltuk.Height = koltuk.Width = 40;
                         koltuk.Top = 30 + (i * 45);
@@ -83,7 +81,7 @@ namespace OtobusBiletSatisUyg
                         koltuk.Text = koltukNo.ToString();
                         koltukNo++;
                         koltuk.ContextMenuStrip = contextMenuStrip1;
-                        koltuk.MouseDown+=Koltuk_Mousedown;
+                        koltuk.MouseDown += Koltuk_Mousedown;
                         this.Controls.Add(koltuk);
 
                     }
@@ -131,7 +129,7 @@ namespace OtobusBiletSatisUyg
                 lvi.SubItems.Add(tiklanan.Text);
                 lvi.SubItems.Add(dateTimePicker1.Text);
                 lvi.SubItems.Add(numericUpDown1.Value.ToString());
-                
+
 
                 listView1.Items.Add(lvi);
             }
